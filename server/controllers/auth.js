@@ -13,7 +13,7 @@ export const signup = async (req, res) => {
     const newUser = await users.create({ email, password: hashedPassword });
     const token = jwt.sign(
       { email: newUser.email, id: newUser._id },
-      "HimanshuGoel"
+      "GauravKishore"
     );
     res.status(200).json({ result: newUser, token });
   } catch (error) {
@@ -34,7 +34,7 @@ export const login = async (req, res) => {
     }
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
-      "HimanshuGoel"
+      "GauravKishore"
     );
     res.status(200).json({ result: existingUser, token });
   } catch (error) {

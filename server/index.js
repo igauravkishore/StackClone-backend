@@ -7,7 +7,7 @@ import { signup, login } from "./controllers/auth.js";
 import { authorizationMiddeleware } from "./middlewares/auth.js";
 
 const app = express();
-import { errorToJSON } from "next/dist/server/render.js";
+// import { errorToJSON } from "next/dist/server/render.js";
 import passportjwt from "passport-jwt";
 const JwtStrategy = passportjwt.Strategy;
 const ExtractJwt = passportjwt.ExtractJwt;
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: "true" }));
 app.use(cors());
 let opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = "HimanshuGoel";
+opts.secretOrKey = "GauravKishore";
 
 passport.use(
   new JwtStrategy(opts, function (jwt_payload, done) {
@@ -82,12 +82,16 @@ app.post("/ans/downvote",authorizationMiddeleware,async(req,res)=>{
 })
 // app.use('/user',userRoutes)
 const CONNECTION_URL =
-  "mongodb+srv://Himanshu:Himanshu@stack-overflow.hzyj7ep.mongodb.net/";
-mongoose
-  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
+  "mongodb+srv://gaurav_kishore:tZ6vMI8xOmXMPfRo@cluster0.dz5sa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  mongoose
+  .connect(CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
     app.listen(port, () => {
-      console.log(`listening to ${port}`);
-    })
-  )
-  .catch((err) => console.log(err.message));
+      console.log(`Listening on port ${port}`);
+      console.log("Connection established");
+    });
+  })
+  .catch((err) => console.log("MongoDB Connection Error:", err.message));

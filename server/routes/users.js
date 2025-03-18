@@ -7,6 +7,8 @@ router.post('/signup',(req, res)=>{
     console.log(req.body);
     // console.log("asdas");
 })
-router.post('/login',()=>{})
+router.post('/login',(req,res)=>{
+    console.log(req.body);
+})
  
 export default router

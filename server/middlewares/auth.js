@@ -16,7 +16,7 @@ export const authorizationMiddeleware = async (req, res, next) => {
    
    try {
        console.log(token)
-     const decoded = jwt.verify(token,'HimanshuGoel');
+     const decoded = jwt.verify(token,'GauravKishore');
      console.log(decoded);
      req.user = decoded;
      next();
